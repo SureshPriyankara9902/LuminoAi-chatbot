@@ -45,21 +45,27 @@ export const ChatArea: React.FC = () => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            contents: [{
-              parts: [{
-                text: userMessage
-              }]
-            }],
-            safetySettings: [{
-              category: "HARM_CATEGORY_HARASSMENT",
-              threshold: "BLOCK_MEDIUM_AND_ABOVE"
-            }],
+            contents: [
+              {
+                parts: [
+                  {
+                    text: userMessage,
+                  },
+                ],
+              },
+            ],
+            safetySettings: [
+              {
+                category: 'HARM_CATEGORY_HARASSMENT',
+                threshold: 'BLOCK_MEDIUM_AND_ABOVE',
+              },
+            ],
             generationConfig: {
               temperature: settings.temperature,
               maxOutputTokens: settings.maxTokens,
               topP: 0.8,
-              topK: 40
-            }
+              topK: 40,
+            },
           }),
         }
       );
@@ -69,7 +75,7 @@ export const ChatArea: React.FC = () => {
       }
 
       const data = await response.json();
-      
+
       if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
         const aiResponse = data.candidates[0].content.parts[0].text;
         addMessage(currentChatId, 'assistant', aiResponse);
@@ -90,8 +96,17 @@ export const ChatArea: React.FC = () => {
 
   if (!currentChat) {
     return (
-      <div className="flex-1 flex items-center justify-center bg-gray-50">
-        <p className="text-gray-500">Select or create a new chat to get started</p>
+      <div className="flex-1 flex items-center justify-center bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white p-6">
+        <div className="text-center max-w-lg">
+          <h1 className="text-3xl font-bold mb-4">Welcome to Lumino AI!</h1>
+          <p className="text-lg">
+            Your personal AI assistant is here to make your conversations insightful and engaging.
+            Select or create a new chat to start exploring Lumino AI's capabilities. Let's get started!
+           
+          </p>
+          <p> Copyright @ 2024. All Right Received </p>
+          <p> Made By Suresh Priyankara </p>
+        </div>
       </div>
     );
   }
