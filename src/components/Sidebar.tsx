@@ -37,6 +37,11 @@ export const Sidebar: React.FC = () => {
   return (
     <>
       <div className="w-80 h-screen bg-gray-900 text-white p-4 flex flex-col">
+        {/* Lumino AI Title */}
+        <div className="text-xl font-semibold text-blue-400 mb-6">
+          Lumino AI
+        </div>
+
         <button
           onClick={addChat}
           className="flex items-center justify-center gap-2 w-full py-3 px-4 rounded-lg bg-blue-600 hover:bg-blue-700 transition-colors"
